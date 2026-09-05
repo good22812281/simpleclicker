@@ -6,9 +6,12 @@ root.geometry("1280x720")
 
 # Чтобы добавить новый фон — просто добавьте новую строку сюда:
 BACKGROUNDS = [
-    {"threshold": 25, "file": "25.png", "name": "чирно"},
-    {"threshold": 50, "file": "50.png", "name": "хонг-мейлинг"},
-    {"threshold": 100, "file": "100.png", "name": "пачули"},
+    {"threshold": 50, "file": "25.png", "name": "чирно"},
+    {"threshold": 500, "file": "50.png", "name": "хонг-мейлинг"},
+    {"threshold": 1000, "file": "100.png", "name": "пачули"},
+    {"threshold": 2000, "file": "2000.png", "name": "рейму"},
+    {"threshold": 6000, "file": "6000.png", "name": "мариса"},
+    {"threshold": 10000, "file": "10000.png", "name": "коиси"},
 ]
 
 for bg in BACKGROUNDS:
@@ -18,10 +21,12 @@ unlocked = set()
 
 count = 0
 passive_started = False
-click_power = 1
-upgrade_cost = 20
+click_power = 1000
+upgrade_cost = 50
+click_multiplier = 1
+multiplier_cost = 1000
 auto_power = 1
-auto_upgrade_cost = 50
+auto_upgrade_cost = 100
 manual_bg_selected = False
 
 background_label = tk.Label(root)
@@ -49,7 +54,7 @@ def update_background():
 
 def click():
     global count
-    count += click_power
+    count += click_power * click_multiplier
     label.config(text=f"Счетчик: {count}")
     update_background()
 
@@ -75,13 +80,25 @@ def buy_upgrade():
     if count >= upgrade_cost:
         count -= upgrade_cost
         click_power += 1
-        upgrade_cost = int(upgrade_cost * 1.5)
+        upgrade_cost = int(upgrade_cost * 2.25)
         label.config(text=f"Счетчик: {count}")
         upgrade_button.config(text=f"Сила клика +1 (цена: {upgrade_cost})")
         power_label.config(text=f"Сила клика: {click_power}")
         update_background()
     else:
         upgrade_button.config(text=f"Не хватает очков (нужно {upgrade_cost})")
+
+def buy_multiplier():
+    global count, click_multiplier, multiplier_cost
+    if count >= multiplier_cost:
+        count -= multiplier_cost
+        click_multiplier += 1
+        multiplier_cost = int(multiplier_cost * 2.5)
+        label.config(text=f"Счетчик: {count}")
+        multiplier_button.config(text=f"Множитель x{click_multiplier} (цена: {multiplier_cost})")
+        update_background()
+    else:
+        multiplier_button.config(text=f"Не хватает очков (нужно {multiplier_cost})")
 
 def buy_auto_upgrade():
     global count, auto_power, auto_upgrade_cost
@@ -92,7 +109,7 @@ def buy_auto_upgrade():
     if count >= auto_upgrade_cost:
         count -= auto_upgrade_cost
         auto_power += 1
-        auto_upgrade_cost = int(auto_upgrade_cost * 1.6)
+        auto_upgrade_cost = int(auto_upgrade_cost * 2.5)
         label.config(text=f"Счетчик: {count}")
         auto_upgrade_button.config(text=f"Автодоход +1 (цена: {auto_upgrade_cost})")
         auto_power_label.config(text=f"Доход автокликера: {auto_power}/сек")
@@ -103,7 +120,7 @@ def buy_auto_upgrade():
 def open_bg_selector():
     selector = tk.Toplevel(root)
     selector.title("Выбор фона")
-    selector.geometry("400x150")
+    selector.geometry("1000x150")
 
     def choose(img):
         global manual_bg_selected
@@ -154,7 +171,10 @@ upgrade_button.place(x=LEFT_MARGIN, y=190)
 auto_upgrade_button = tk.Button(root, text=f"Автодоход +1 (цена: {auto_upgrade_cost})", command=buy_auto_upgrade)
 auto_upgrade_button.place(x=LEFT_MARGIN, y=230)
 
+multiplier_button = tk.Button(root, text=f"Множитель x{click_multiplier} (цена: {multiplier_cost})", command=buy_multiplier)
+multiplier_button.place(x=LEFT_MARGIN, y=270)
+
 selector_button = tk.Button(root, text="Выбрать фон", command=open_bg_selector)
-selector_button.place(x=LEFT_MARGIN, y=270)
+selector_button.place(x=LEFT_MARGIN, y=310)
 
 root.mainloop()

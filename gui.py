@@ -21,7 +21,7 @@ unlocked = set()
 
 count = 0
 passive_started = False
-click_power = 1000
+click_power = 1
 upgrade_cost = 50
 click_multiplier = 1
 multiplier_cost = 1000

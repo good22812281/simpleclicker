@@ -19,8 +19,8 @@ BACKGROUNDS = [
     {"threshold": 2000, "file": "2000.png", "name": "рейму"},
     {"threshold": 6000, "file": "6000.png", "name": "мариса"},
     {"threshold": 10000, "file": "10000.png", "name": "коиси"},
-    {"threshold": 25000, "file": "25000.png", "name": "сатори"},
-    {"threshold": 60000, "file": "60000.png", "name": "сакуя"},
+    {"threshold": 25000, "file": "250001.png", "name": "сатори"},
+    {"threshold": 60000, "file": "600001.png", "name": "сакуя"},
 ]
 
 for bg in BACKGROUNDS:

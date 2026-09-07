@@ -47,7 +47,6 @@ speed_cost = 5
 auto_multiplier = 1
 auto_multiplier_cost = 10
 
-
 sidebar = ctk.CTkFrame(root, width=300, height=720, corner_radius=0)
 sidebar.place(x=0, y=0)
 

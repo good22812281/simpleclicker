@@ -267,7 +267,7 @@ def open_bg_selector():
     selector.title("Выбор фона")
     selector.geometry("1000x150")
 
-
+    # Создаем горизонтальный прокручиваемый контейнер
     scroll_frame = ctk.CTkScrollableFrame(selector, orientation="horizontal", height=100, width=950)
     scroll_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
@@ -297,6 +297,11 @@ def open_bg_selector():
 
     ctk.CTkButton(scroll_frame, text="Авто (по очкам)", command=reset_auto).pack(side="left", padx=10, pady=20)
 
+def buy_speed():
+    global special_currency, auto_interval, speed_cost
+    if auto_interval <= 100:
+        speed_shop_label.configure(text="Максимальная скорость достигнута!")
+        return
 
     if special_currency >= speed_cost:
         special_currency -= speed_cost
@@ -374,6 +379,7 @@ def open_menu():
     menu.title("Меню")
     menu.geometry("300x250")
 
+
     # Доступ к мини-играм только с 6000 очков
     if count >= 6000:
         minigames_btn = ctk.CTkButton(
@@ -393,7 +399,8 @@ def open_menu():
 def open_shop(parent):
     shop = ctk.CTkToplevel(parent)
     shop.title("Магазин")
-    shop.geometry("360x600")  # увеличим высоту для продажи
+    shop.geometry("360x600")
+
 
     global speed_shop_label, speed_buy_btn, auto_mult_label, auto_mult_btn
     global fish_pack_label
@@ -504,6 +511,8 @@ def open_minigames(parent):
     minigames = ctk.CTkToplevel(parent)
     minigames.title("Мини-игры")
     minigames.geometry("300x220")
+
+
     snake_btn = ctk.CTkButton(
         minigames, text="Змейка", command=lambda: open_snake(minigames)
     )
@@ -518,6 +527,7 @@ def open_snake(parent):
     game_window = ctk.CTkToplevel(parent)
     game_window.title("Змейка")
     game_window.geometry("420x500")
+
 
     CELL = 20
     WIDTH = 400
@@ -630,6 +640,7 @@ def open_aquarium(parent):
     aquarium = ctk.CTkToplevel(parent)
     aquarium.title("Аквариум")
     aquarium.geometry("560x560")
+
 
     WIDTH = 520
     HEIGHT = 420
@@ -771,7 +782,7 @@ def open_aquarium(parent):
             )
 
     def update_aquarium():
-        global fish_food_eaten  # используем глобальную переменную
+        global fish_food_eaten
 
         if not aquarium.winfo_exists():
             return

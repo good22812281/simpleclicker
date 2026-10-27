@@ -8,6 +8,11 @@ PS я просил ИИ сделать пометки и немного подк
 
 to run you can do
 ```
+cd path/to/unzipped/game
 python gui.py
 ```
 mostly stable and so the data are saved after each closed session
+
+you can send feedback on my email
+    ivan-epk@proton.me
+good game session for ya i guess

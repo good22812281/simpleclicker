@@ -1,4 +1,4 @@
-this is a simple 2hu clicker AKA my first project which i like which I still like to this day.
+this is a simple 2hu clicker AKA my first project which I still like to this day.
 
 idea was simple i wanted to make something similar to koishi clicker or whatever the heck they calling it but i wanted more simple thing to create so i came up with that idea like entirely on the first day
 

@@ -13,7 +13,7 @@ python gui.py
 ```
 mostly stable and so the data are saved after each closed session
 
-you can send feedback on my email
+you can send feedback on my email:
 
     ivan-epk@proton.me
     
